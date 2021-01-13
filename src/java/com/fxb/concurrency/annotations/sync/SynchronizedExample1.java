@@ -1,11 +1,13 @@
 package com.fxb.concurrency.annotations.sync;
 
+import com.fxb.concurrency.annotations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Slf4j
+@ThreadSafe
 public class SynchronizedExample1 {
 
     //修饰代码块
@@ -44,5 +46,6 @@ public class SynchronizedExample1 {
         executorService.execute(()->{
             example2.test2(2);
         });
+        executorService.shutdown();
     }
 }
