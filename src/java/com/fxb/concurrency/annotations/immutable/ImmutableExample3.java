@@ -1,17 +1,15 @@
 package com.fxb.concurrency.annotations.immutable;
 
-import com.fxb.concurrency.annotations.NotThreadSafe;
 import com.fxb.concurrency.annotations.ThreadSafe;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
 @ThreadSafe
-public class ImmutableExample2 {
+public class ImmutableExample3 {
     public static Map<Integer, Integer> map = Maps.newHashMap();
     static {
         map.put(1,1);
