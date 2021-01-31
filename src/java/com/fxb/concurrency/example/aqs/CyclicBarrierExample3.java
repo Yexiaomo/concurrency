@@ -5,8 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.*;
 
 @Slf4j
-public class CyclicBarrierExample2 {
-    final static CyclicBarrier cyclicBarrier = new CyclicBarrier(5);
+public class CyclicBarrierExample3 {
+    final static CyclicBarrier cyclicBarrier = new CyclicBarrier(5,()->{
+        log.info("callback is running");
+    });
 
     public static void main(String[] args) {
         final ExecutorService exec = Executors.newCachedThreadPool();

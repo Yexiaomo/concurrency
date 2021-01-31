@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
 @Slf4j
-public class SemaphoreExample2 {
+public class SemaphoreExample3 {
     private final static int threadTotal = 100;
 
     public static void main(String[] args) throws InterruptedException {
@@ -17,9 +17,10 @@ public class SemaphoreExample2 {
             final int threadNum = i;
             exec.execute(() -> {
                 try {
-                    semaphore.acquire(2);
-                    test(threadNum);
-                    semaphore.release(2);
+                    if(semaphore.tryAcquire(2)){
+                        test(threadNum);
+                        semaphore.release(2);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -30,6 +31,5 @@ public class SemaphoreExample2 {
 
     private static void test(int threadNum) throws InterruptedException {
         log.info("{}", threadNum);
-        Thread.sleep(1000);
     }
 }

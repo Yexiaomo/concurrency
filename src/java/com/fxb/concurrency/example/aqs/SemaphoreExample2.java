@@ -8,18 +8,18 @@ import java.util.concurrent.Semaphore;
 
 @Slf4j
 public class SemaphoreExample2 {
-    private final static int threadTotal = 10;
+    private final static int threadTotal = 100;
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService exec = Executors.newCachedThreadPool();
-        final Semaphore semaphore = new Semaphore(2);
+        final Semaphore semaphore = new Semaphore(4);
         for (int i = 0; i < threadTotal; i++) {
             final int threadNum = i;
             exec.execute(() -> {
                 try {
-                    semaphore.acquire();
+                    semaphore.acquire(2);
                     test(threadNum);
-                    semaphore.release();
+                    semaphore.release(2);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
