@@ -1,6 +1,6 @@
 package com.fxb.concurrency;
 
-import com.fxb.concurrency.annotations.threadLocal.RequestHolder;
+import com.fxb.concurrency.example.threadLocal.RequestHolder;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.*;
