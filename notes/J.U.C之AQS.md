@@ -767,7 +767,7 @@ public class LockExample2 {
                 e.printStackTrace();
             }
             condition.signal(); //当其他线程调用signal()会重新请求锁。
-            System.out.println("send signal ~ ");
+            System.out.println("send signal ~ "); //3
             reentrantLock.unlock();
         }).start();
     }
