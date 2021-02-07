@@ -4,6 +4,70 @@ import java.util.*;
 
 class Solution {
     public static void main(String[] args) {
+//        Scanner sc = new Scanner(System.in);
+//        String str = sc.nextLine();
+//        Map<String, Integer> map = slove(str);
+//        for(String key : map.keySet()){
+//            System.out.print(key + map.get(key));
+//        }
+//        sc.close();
+        new Solution().crackSafe(3, 2);
+    }
+    TreeSet<String> visited;
+    StringBuilder res;
+    public  String crackSafe(int n, int k) {
+        if(n == 1 && k == 1) return "0";
+        visited = new TreeSet<>();
+        res = new StringBuilder();
+        //从顶点开始
+        String start = String.join("", Collections.nCopies(n - 1, "0"));
+        findEuler(start,  k);
+        res.append(start);
+        return res.toString();
+    }
+
+    private void findEuler(String curv, int k) {
+        for (int i = 0; i < k; i++) {
+            String nextv = curv + i;
+            if(!visited.contains(nextv)){
+                visited.add(nextv);
+                findEuler(nextv.substring(1), k);
+                res.append(i);
+            }
+        }
+    }
+
+    public static  String getPermutation(int n, int k) {
+        StringBuilder res = new StringBuilder();
+        List<Integer> ans = new ArrayList<>();
+
+        //每位的阶乘个数
+        int[] factorials = new int[n+1];
+        factorials[0] = 1;
+        for(int i = 1, fact = 1; i <= n; i++){
+            ans.add(i);
+            fact *= i;
+            factorials[i] = fact;
+        }
+        //根据 k / (n-1)! = num , num等于当前位数
+        k -= 1;
+        for(int i = n-1; i >= 0; i--){
+            int idx = k / factorials[i];
+            res.append(ans.remove(idx));
+            k -= idx * factorials[i];
+        }
+        return res.toString();
+    }
+}
+
+
+/*
+package com.fxb.concurrency;
+
+import java.util.*;
+
+class Solution {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         Map<String, Integer> map = slove(str);
@@ -75,3 +139,4 @@ class Solution {
     }
 
 }
+*/
